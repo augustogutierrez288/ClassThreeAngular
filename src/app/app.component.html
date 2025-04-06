@@ -1,13 +1,42 @@
 <h1>Hola mundo</h1>
+<!--INTERPOLACION-->
 <h2>{{unSaludo}}</h2>
-
+<!--DIRECTIVAS-->
+<!--Forma uno-->
 <h3 class="{{numero > 10 ? 'success' : 'error'}}">{{numero}}</h3>
-
+<!--Forma dos-->
 <h3 [ngClass]="numero < 10 ? 'success' : 'error'">{{numero}}</h3>
+<!--Forma tres-->
+<h3 [ngClass]="{'success': numero == 10, 'error': numero == 20}">{{numero}}</h3>
 
+<section appRoundedBlock [ngStyle]="{'width': '300px', 'height': '500px', 'background': '#333333', 'display': 'flex', 'border-radius': '30px'}">
+  <article class="card">
+
+  </article>
+</section>
+<!--DIRECTIVAS PERSONALIZADA-->
+<h4>
+  Lorem, ipsum dolor sit amet consectetur 
+  adipisicing elit. Consequuntur fuga reiciendis 
+  eum quibusdam voluptatem laboriosam voluptatum officiis 
+  culpa mollitia quisquam consectetur eos fugit aliquid, 
+  tenetur voluptatibus cupiditate, animi ab alias?
+</h4>
+
+<h5 [ngStyle]="{'font-size': '2rem'}">NgFor</h5>
 <ul>
   <li *ngFor=" let alumno of ['Goku', 'Gohan', 'Vegeta']; let i = index">
    <p>{{i}} - {{alumno}}</p>
   </li>
 </ul>
 
+<ul *ngFor="let mascotas of ['Minipili', 'Mina', 'Lola', 'Laruna', 'Luli', 'Pedrito']; let i = index">
+  <li>
+    <p>{{i}} - {{mascotas}}</p>
+
+  </li>
+</ul>
+
+<h5 [ngStyle]="{'font-size': '2rem'}">NgIf</h5>
+<p>Muestra o oculta elementos dependiendo un boleano</p>
+<p *ngIf="isError" class="error"> Ocurrio un Error</p>
