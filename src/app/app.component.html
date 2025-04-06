@@ -14,14 +14,6 @@
 
   </article>
 </section>
-<!--DIRECTIVAS PERSONALIZADA-->
-<h4>
-  Lorem, ipsum dolor sit amet consectetur 
-  adipisicing elit. Consequuntur fuga reiciendis 
-  eum quibusdam voluptatem laboriosam voluptatum officiis 
-  culpa mollitia quisquam consectetur eos fugit aliquid, 
-  tenetur voluptatibus cupiditate, animi ab alias?
-</h4>
 
 <h5 [ngStyle]="{'font-size': '2rem'}">NgFor</h5>
 <ul>
@@ -38,5 +30,49 @@
 </ul>
 
 <h5 [ngStyle]="{'font-size': '2rem'}">NgIf</h5>
+
 <p>Muestra o oculta elementos dependiendo un boleano</p>
+
 <p *ngIf="isError" class="error"> Ocurrio un Error</p>
+<p *ngIf="isError else todoOkTemplate" class="error"> Ocurrio un Error</p>
+<ng-template #todoOkTemplate>
+  <p class="success">Todo esta ok</p>
+</ng-template>
+
+<h5 [ngStyle]="{'font-size': '2rem'}">NgSwitch</h5>
+
+<div [ngSwitch]="status">
+  <div *ngSwitchCase="1">Estado 1</div>
+  <div *ngSwitchCase="2">Estado 2</div>
+  <div *ngSwitchDefault>Estado no valido</div>
+</div>
+
+<button (click)="onClick($event)">Click aquí</button>
+<p *ngIf="isError else todoOkTemplate" class="error">Ocurrio un Error</p>
+<ng-template #todoOkTemplate>
+  <p class="success">Todo esta ok</p>
+</ng-template>
+
+<input (change)="onInputChange($event)" type="text" name="entrada" id="entrada">
+<input (keydown)="onInputKeyboard($event)" type="text" name="entrada" id="entrada">
+
+<!--
+ENLAZAMIENTO DE DOBLE VIA
+[] => significa que vamos a pasar data del padre a hijo.
+() => significa que vamos a escuchar eventos de hijo a padre.
+[()] => significa que el padre puede enviar data al hijo y el hijo al padre.
+-->
+
+<form >
+  <label for="username">Usuario</label>
+  <input [(ngModel)]="user.username" type="text" name="username" id="username">
+  <label for="password">Contraseña</label>
+  <input [(ngModel)]="user.password" type="text" name="password" id="password">
+  <button (click)="onSave()" type="button">Ingresar</button>
+</form>
+
+<!--
+PIPES
+-->
+
+<h6>Pipes | Date pipe: {{birthday | date:'dd/MM/YYYY'}}</h6>
